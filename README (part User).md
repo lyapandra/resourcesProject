@@ -11,7 +11,10 @@ View technology may vary for each framework. Here, JSP views are (re)used for mo
 URLs under /users, /roles etc. must be accessible to only logged users with right privileges. This requirement implemented using Spring Security
 
 # Build and run
-1. Check out the project source code from github
+1. Check out the project source code from github. 
+Main developing project is https://github.com/softservedata/lv257.git 
+This https://github.com/lyapandra/resourcesProject is experiment project
+  
 2. Import resources_MYSQL_DB.sql to newly created schema named mydatabase
 
 3. Open a terminal and run the following command from root directory : mvn install
