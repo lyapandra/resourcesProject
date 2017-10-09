@@ -8,6 +8,7 @@ import com.softserve.edu.Resources.service.UserDetailsService;
 import com.softserve.edu.Resources.service.UserProfileService;
 import com.softserve.edu.Resources.service.UserService;
 import com.softserve.edu.Resources.service.impl.RoleService;
+import com.softserve.edu.Resources.service.impl.UserProfileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
@@ -63,31 +64,35 @@ public ModelAndView profilePOSTuseUserDetails(Model model, Principal principal) 
 
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ModelAndView profilePOST(Model model, Principal principal) {
-        String userName = principal.getName();
-        User user = userService.findByEmail(userName);
+    public ModelAndView profileGET(Model model, Principal principal) {
+//        String userName = principal.getName();
+//        User user = userService.findByEmail(userName);
         ModelAndView profile = new ModelAndView("profile");
-        Optional<UserDetails> details = userDetailsService.getUserDetailsByUserId(user.getId());
+//        Optional<UserDetails> details = userDetailsService.getUserDetailsByUserId(user.getId());
+//        UserProfileService userProfile = new UserProfileService();
 
-        UserProfileDTO userProfileDTO = new UserProfileDTO();
+//        UserProfileDTO userProfileDTO = new UserProfileDTO();
 //        userProfileDTO.setFirstName(details.getFirstName());
-        userProfileDTO.setFirstName(details.get ().getFirstName());
+//        userProfileDTO.setFirstName(details.get ().getFirstName());
 
         /*UserDetails details1 = new UserDetails();
         details1.setFirstName("all right");*/
 
-        System.out.println(details);
+//        System.out.println(details);
 //        don`t erase
 //        profile.addObject("details", userProfileDTO.isPresent() ? details.get() : new UserDetails());
+//        UserProfileDTO userProfileDTO = UserProfileService;
+        UserProfileDTO userProfileDTO = userProfileService.createUserProfileDTO(principal);
         profile.addObject("details", userProfileDTO);
         return profile;
     }
 
     @RequestMapping(value="/profile", method=RequestMethod.POST)
-    public String profileGET(@ModelAttribute ("details") UserProfileDTO userProfileDTO, BindingResult result, Model model) throws Exception {
+    public String profilePOST(@ModelAttribute ("details") UserProfileDTO userProfileDTO, BindingResult result, Model model) throws Exception {
 
         System.out.println("=======userDetails==============");
         System.out.println(userProfileDTO);
+        userProfileService.saveUserProfile(userProfileDTO);
 
         return "redirect:/profile";
     }

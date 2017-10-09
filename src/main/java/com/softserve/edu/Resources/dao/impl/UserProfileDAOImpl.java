@@ -3,14 +3,12 @@ package com.softserve.edu.Resources.dao.impl;
 //import edu.softserve.dao.UserDAO;
 //import edu.softserve.entity.User;
 
-import com.softserve.edu.Resources.dao.UserDetailsDAO;
-import com.softserve.edu.Resources.dto.UserProfileDTO;
+//import com.softserve.edu.Resources.dao.UserDetailsDAO;
+import com.softserve.edu.Resources.dao.UserProfileDAO;
 import com.softserve.edu.Resources.entity.UserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,16 +19,16 @@ import java.lang.invoke.MethodHandles;
 import java.util.Optional;
 
 @Repository
-@Qualifier("userDrtailsDAO")
+@Qualifier("userProfileDAO")
 @Transactional
-public class UserDetailsDAOImpl extends GenericDAOImpl<UserDetails, Long> implements UserDetailsDAO {
+public class UserProfileDAOImpl extends GenericDAOImpl<UserDetails, Long> implements UserProfileDAO {
 
     static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getName());
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    protected UserDetailsDAOImpl() {
+    protected UserProfileDAOImpl() {
         super(UserDetails.class, LOGGER);
     }
 
@@ -40,12 +38,7 @@ public class UserDetailsDAOImpl extends GenericDAOImpl<UserDetails, Long> implem
         return querySingleResult(queryUserDetails, "username", email);
     }
 
-    public UserDetails findById(long id) {
-        Query query = entityManager.createQuery("select i from UserDetails i where i.id = :id")
-                .setParameter("id", id);
-        UserDetails userDetails = (UserDetails) query.getSingleResult();
-        return userDetails;
-    }
+
 
 /*    public Optional<UserDetails> modifyUserDetails(UserDetails userDetails) {
         String queryUserDetails = "select i from User i where i.username = :username";
@@ -54,8 +47,8 @@ public class UserDetailsDAOImpl extends GenericDAOImpl<UserDetails, Long> implem
 
 //    @Override
 //    public void save(UserProfileDTO userProfileDTO) {
-    public void save(UserDetails userDetails) {
-        final UserDetails userDetailsToEntity1 = makePersistent(userDetails);
+    public void saveProfile(UserDetails userDetails) {
+        final UserDetails userDetailsToEntity = makePersistent(userDetails);
         System.out.println("===================save(UserProfileDTO userProfileDTO)========================");
         System.out.println(userDetails);
 //        final UserProfileDTO userDetailsToEntity2 = makePersistent(userProfileDTO);

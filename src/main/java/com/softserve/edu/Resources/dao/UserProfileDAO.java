@@ -5,13 +5,13 @@ import com.softserve.edu.Resources.entity.UserDetails;
 
 import java.util.Optional;
 
-public interface UserDetailsDAO extends GenericDAO<UserDetails, Long>{
+public interface UserProfileDAO extends GenericDAO<UserDetails, Long>{
     Optional<UserDetails> findByEmail(String email);
-    UserDetails findById(long id);
-//    void save(UserProfileDTO userDetails);
-    void save(UserDetails userDetails);
 
-//    UserDetails makePersistent(UserProfileDTO userDetails);
+//    void save(UserProfileDTO userDetails);
+    void saveProfile(UserDetails userDetails);
+
+//    UserDetails makePersistent(UserProfileDTO userProfileDTO);
 }
 
 
