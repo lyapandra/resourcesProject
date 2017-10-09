@@ -44,13 +44,11 @@ public class RequestServiceTest {
     private static User register;
     private static Date date;
 
-
     @InjectMocks
     private RequestService requestService;
 
     @Mock
     private ResourceRequestDAOImpl resourceRequestDAO;
-
 
     @Mock
     private UserDAO userDAO;

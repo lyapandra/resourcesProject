@@ -84,6 +84,12 @@ public class ResourceServiceImplTest {
         verify(resourceDaoMock, times(1)).findResourcesByResourceType(eq(queryForDao), eq(mapMock), anyList());
         
         assertNotNull(retrievedListGenRes);
+
+//      DELETE THIS LINE
+//        listGenResMock = null;
+
+        System.out.println("try testFindResourcesByResourceType ###");
+
         assertThat(retrievedListGenRes, is(listGenResMock));
         
         
