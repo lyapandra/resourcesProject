@@ -31,7 +31,7 @@ UserProfile:
 * DB.table is user_details (user_account is used for get user ID)
 * Entity layer is UserDetails
 * DAO layer is 
-* DTO layer is UserProfile (for Profile.jsp), UserDetails
+* DTO layer are UserProfile (for Profile.jsp), UserDetails. I use common GenericResourceDTO too.
 * Service layer is userProfileService
 * Controller layer are UserController (/profile) and MainController (/users and /account. When I begin to develope them I move them to UserController)
 * View layer are:
@@ -46,5 +46,6 @@ Get data from UserDetails Entity, put them to UserProfileDTO at UserController a
 - [x] 3a. Save data from UserProfileDTO into UserDetails Entity (UserController @RequestMapping(value="/profile", method=RequestMethod.POST))
 
 # Todo Profile.jsp
-- [ ] 3b. Add Exceptions handling
+- [ ] 3b. Add other fields at Profile.jsp
+- [ ] 3c. Add Exceptions handling
 - [ ] 4. Create unit and integration tests (JUnit, TestNG) 
